@@ -1,0 +1,121 @@
+import pandas as pd
+
+# Filter all countries' primary language in Central America
+
+data_CA = {
+    "Country": ["Guatemala", "El Salvador", "Honduras", "Nicaragua", "Costa Rica", "Panama", "Belize"],
+    "Symbol": ["GUAT", "ELSL", "HOND", "NIC", "CSTR", "PAN", "BLZ"],
+    "Natl Language": ["Spanish", "Spanish", "Spanish", "Spanish", "Spanish", "Spanish", "English"]
+}
+
+# Filter all countries' primary language in South America
+data_SA = {
+    "Country": ["Brazil", "Colombia", "Argentina", "Peru", "Venezuela", "Chile", "Ecuador", "Bolivia", "Paraguay", "Uruguay", "Guyana", "Suriname"],
+    "Symbol": ["BRA", "COL", "ARG", "PERU", "VENE", "CHIL", "ECUA", "BOL", "PARA", "URU", "GUY", "SURM"],
+    "Natl Language": ["Portuguese", "Spanish", "Spanish", "Spanish & Quechua", "Spanish", "Spanish", "Spanish", "Spanish", "Spanish & Guarani", "Spanish", "English", "Dutch"]
+}
+
+# Filter all countries' primary language in Europe
+data_EU = {
+    "Country": ["Albania", "Andorra", "Austria", "Belarus", "Belgium", "Bosnia & Herzegovina",
+  "Bulgaria", "Croatia", "Cyprus", "Czech Republic", "Denmark", "England", "Estonia", "Finland",
+  "France", "Germany", "Gibraltar", "Greece", "Greenland", "Iceland", "Ireland", "Italy", "Latvia",
+  "Liechtenstein", "Lithuania", "Luxembourg", "Macedonia", "Malta", "Moldova", "Monaco", "Montenegro",
+  "Netherlands", "Norway", "Poland", "Portugal", "Romania", "Serbia", "Slovakia", "Slovenia", "Spain", "Sweden", "Switzerland", "Ukraine"],
+    "Symbol": ["ALB", "ANDO", "AUST", "BYS", "BELG", "BIH", "BULG", "HRV", "CYPR", "CZEC", "DEN",
+  "ENG", "EST", "FIN", "FRA", "GER", "GIB", "GRC", "GRL", "ICLD", "IRE", "ITLY", "LATV", "LCHT",
+  "LITH", "LXM", "MKD", "MLT", "MOD", "MON", "MNE", "NETH", "NOR", "POL", "PORT", "ROM", "SRB", "SVK", "SVN", "SPN", "SWE", "SWTZ", "UKR"],
+    "Natl Language": ["Albanian", "Catalan", "German", "Belarusian & Russian", "Dutch", "Bosnian, Serbian, Croatian",
+  "Bulgarian", "Croatian", "Greek, Turkish, English", "Czech", "Danish", "English", "Estonian", "Finnish", "French",
+  "German", "English", "Greek", "Greenlandic & Danish", "Icelandic", "Irish & English", "Italian", "Latvian", "German",
+  "Lithuanian", "Luxembourgish, French, German", "Macedonian", "Maltese", "Moldovan", "French", "Serbo-Croatian", "Dutch",
+  "Norwegian", "Polish", "Portuguese", "Romanian", "Serbian", "Slovak", "Slovenian", "Spanish", "Swedish", "German", "Ukrainian"]
+}
+
+# Filter all countries' primary language in the Middle East
+data_ME = {
+    "Country": ["Bahrain", "Egypt", "Iran", "Iraq", "Israel", "Jordan", "Kuwait", "Lebanon",
+  "Oman", "Palestine", "Qatar", "Saudi Arabia", "Syria", "Turkey", "United Arab Emirates", "Yemen"],
+    "Symbol": ["BHR", "EGY", "IRN", "IRQ", "ISR", "JOR", "KWT", "LBN", "OMN", "PSE", "QAT", "SAU", "SYR", "TUR", "ARE", "YEM"],
+    "Natl Language": ["Arabic", "Arabic", "Persian", "Arabic & Kurdish", "Hebrew", "Arabic",
+  "Arabic", "Arabic", "Arabic", "Arabic", "Arabic", "Arabic", "Arabic", "Turkish", "Arabic", "Arabic"]
+}
+
+# Filter all countries' primary language in Asia
+data_ASIA = {
+    "Country": ["Afghanistan", "Armenia", "Azerbaijan", "Bangladesh", "Bhutan", "Brunei",
+  "Cambodia", "China", "Georgia", "India", "Indonesia", "Japan", "Kazakhstan", "North Korea",
+  "South Korea", "Kyrgyzstan", "Laos", "Malaysia", "Maldives", "Mongolia", "Myanmar", "Nepal",
+  "Pakistan", "Philippines", "Russia", "Singapore", "Sri Lanka", "Taiwan", "Tajikistan", "Thailand",
+  "Timor-Leste", "Turkmenistan", "Uzbekistan", "Vietnam"],
+    "Symbol": ["AFG", "ARM", "AZE", "BGD", "BTN", "BRN", "KHM", "CHN", "GEO", "IND", "IDN",
+  "JPN", "KAZ", "PRK", "KOR", "KGZ", "LAO", "MYS", "MDV", "MNG", "MMR", "NPL", "PAK", "PHL",
+  "RUS", "SGP", "LKA", "TWN", "TJK", "THA", "TLS", "TMN", "UZB", "VNM"],
+    "Natl Language": ["Pashto & Persian", "Armenian", "Azerbaijani", "Bengali", "Bhutanese",
+  "Malay & English", "Khmer", "Mandarin", "Georgian", "Hindi & English", "Indonesian", "Japanese",
+  "Kazakh & Russian", "Korean", "Korean", "Kyrgyz & Russian", "Lao", "Bahasa Melayu", "Maldivian Dhivehi",
+  "Khalkha Mongol", "Burmese", "Nepali", "Urdu & English", "Filipino & English", "Russian", 
+  "Chinese, Malay, Tamil, English", "Sinhala", "Mandarin", "Tajik", "Thai", "Tetum & Portuguese", "Turkmen", "Uzbek", "Vietnamese"]
+}
+
+
+# Filter all countries' primary language in Africa
+data_AFRICA = {
+    "Country": [
+        "Algeria", "Angola", "Benin", "Botswana", "Burkina Faso", "Burundi", "Cameroon",
+        "Cape Verde", "Central African Republic", "Chad", "Comoros", "Democratic Republic of Congo",
+        "Côte d'Ivoire", "Djibouti", "Egypt", "Equatorial Guinea", "Eritrea", "Ethiopia", "Gabon",
+        "The Gambia", "Ghana", "Guinea", "Guinea-Bissau", "Kenya", "Lesotho", "Liberia", "Libya",
+        "Madagascar", "Malawi", "Mauritania", "Mauritius", "Morocco", "Mozambique", "Namibia",
+        "Niger", "Nigeria", "Rwanda", "São Tomé and Príncipe", "Senegal", "Seychelles", "Sierra Leone",
+        "Somalia", "South Africa", "Sudan", "Swaziland", "Tanzania", "Togo", "Tunisia", "Uganda",
+        "Zambia", "Zimbabwe"
+    ],
+    "Symbol": [
+        "DZA", "AGO", "BEN", "BWA", "BFA", "BDI", "CMR", "CPV", "CAF", "TCD", "COM", "COD", "CIV",
+        "DJI", "EGY", "GNQ", "ERI", "ETH", "GAB", "GMB", "GHA", "GIN", "GNB", "KEN", "LSO", "LBR",
+        "LBY", "MDG", "MWI", "MRT", "MUS", "MAR", "MOZ", "NAM", "NER", "NGA", "RWA", "STP", "SEN",
+        "SYC", "SLE", "SOM", "ZAF", "SDN", "SWZ", "TZA", "TGO", "TUN", "UGA", "ZMB", "ZWE"
+    ],
+    "Natl Language": [
+        "Arabic", "Portuguese", "French", "Setswana & English", "French", "Kirundi & French",
+        "English & French", "Portuguese", "French & Sangho", "French & Arabic", "French & Arabic",
+        "French", "French", "French", "French & Arabic", "Arabic", "Spanish & French", "Tigrinya, Arabic, English", "Amharic",
+        "French", "English", "English", "French", "Portuguese", "English & Swahili",
+        "Sesotho & English", "English", "Arabic", "French & Malagasy", "English, Chichewa", "French",
+        "Arabic", "English & French", "Arabic", "Portuguese", "English", "French", "English",
+        "Kinyarwanda, French, English", "Portuguese", "French", "English & French", "English",
+        "Somali", "11 Official Languages", "Arabic", "Kiswahili & English", "French", "Arabic", "English", "English"
+    ]
+}
+
+
+
+df1 = pd.DataFrame(data_CA)
+print(df1)
+
+print("")
+
+df2 = pd.DataFrame(data_SA)
+print(df2)
+
+print("")
+
+df3 = pd.DataFrame(data_EU)
+print(df3)
+
+print("")
+
+df4 = pd.DataFrame(data_ME)
+print(df4)
+
+print("")
+
+df5 = pd.DataFrame(data_ASIA)
+print(df5)
+
+
+print("")
+
+df6 = pd.DataFrame(data_AFRICA)
+print(df6)
